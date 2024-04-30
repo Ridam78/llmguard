@@ -1,0 +1,26 @@
+replicaCount: 1
+app:
+  name: llmguard
+  namespace: swiftsecurity
+  container:
+    image: devopscloudarmour/NEW_IMAGE
+    imagePullSecrets: pullsecret
+  service:
+    protocol: TCP
+    type: ClusterIP
+    port: 8005
+    targetPort: 8005
+  config:
+    name: llmguard
+    data:
+      - key: GO_LANG_HOST
+        name: https://api-admin.swiftsecurity.ai/
+      - key: NUCLEUZ_HOST
+        name: https://nucleuzdlp-admin.swiftsecurity.ai/ 
+
+configMap:
+  - key: GO_LANG_HOST
+    name: https://api-admin.swiftsecurity.ai/
+  - key: NUCLEUZ_HOST
+    name: https://nucleuzdlp-admin.swiftsecurity.ai/
+
